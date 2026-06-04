@@ -129,7 +129,10 @@ supabase/
   migrations/0001_init.sql
   seed.sql
 tests/
-  smoke.test.mjs       single placeholder test (QA is intentionally thin)
+  unit/                unit tests (Vitest)
+  e2e/                 end-to-end browser flows (Playwright)
+docs/
+  scenarios/           natural-language QA scenarios
 ```
 
 ## Scripts
@@ -140,8 +143,60 @@ npm run build      # production build
 npm run start      # run the production build
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
-npm run test       # node:test smoke test
+npm run test       # unit tests (Vitest)
+npm run test:watch # unit tests in watch mode
+npm run test:e2e   # end-to-end tests (Playwright; needs the local stack + .env.local)
 ```
+
+---
+
+## Testing
+
+Two layers, run independently:
+
+- **Unit** (`tests/unit`, Vitest) — fast, pure-logic tests with no external
+  dependencies. They mock Supabase, so no database or network is required.
+- **End-to-end** (`tests/e2e`, Playwright) — drive a real browser against the
+  running app and a **live local Supabase stack**.
+
+Plain-English scenarios behind these tests live in
+[`docs/scenarios`](docs/scenarios) — a good map of what is and isn't covered.
+
+### Unit tests
+
+```bash
+npm run test          # one-shot
+npm run test:watch    # watch mode
+```
+
+### End-to-end tests
+
+E2E needs the full stack up. One-time setup, then the run:
+
+```bash
+# 1. Local Supabase (requires Docker running). Prints your local URL + keys:
+npx supabase start
+
+# 2. Point the app at the local stack. Use the values printed above:
+#    NEXT_PUBLIC_SUPABASE_URL      -> the API URL (e.g. http://127.0.0.1:55321)
+#    NEXT_PUBLIC_SUPABASE_ANON_KEY -> the anon (publishable) key
+#    Create .env.local with those (see "Configure environment variables").
+
+# 3. Install the Playwright browser (first run only):
+npx playwright install chromium
+
+# 4. Run it. Playwright boots `npm run dev` automatically if nothing is on :3000.
+npm run test:e2e
+```
+
+Notes:
+
+- Email confirmation must be **off** on the local stack (it is by default in
+  [`supabase/config.toml`](supabase/config.toml)) so registration yields an
+  immediate session.
+- Each e2e run creates a **real auth user** with a unique email. Cleaning those
+  up (a Playwright global teardown using the service-role key) is a deliberate
+  open task — see [`docs/scenarios/01-registration.md`](docs/scenarios/01-registration.md).
 
 ---
 
