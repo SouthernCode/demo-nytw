@@ -45,6 +45,9 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 /playwright/.cache/
+/.playwright-cli/
+evidence-*.png
+.claude/skills/playwright-cli/
 
 # claude code runtime
 .claude/scheduled_tasks.lock
