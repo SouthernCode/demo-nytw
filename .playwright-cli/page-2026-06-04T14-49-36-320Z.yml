@@ -1,0 +1,23 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "LaunchPad" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e11]: LaunchPad
+      - link "Back to site" [ref=e12] [cursor=pointer]:
+        - /url: /
+        - img [ref=e13]
+        - text: Back to site
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - paragraph [ref=e17]: Early access
+        - heading "Get on the LaunchPad waitlist" [level=1] [ref=e18]
+        - paragraph [ref=e19]: We're onboarding founders in small batches. Tell us what you're building and we'll save you a spot.
+      - generic [ref=e46]:
+        - img [ref=e47]
+        - heading "You're on the list" [level=3] [ref=e50]
+        - paragraph [ref=e51]: Thanks for your interest — we'll be in touch as we open up access.
+  - button "Open Next.js Dev Tools" [ref=e41] [cursor=pointer]:
+    - img [ref=e42]
+  - alert [ref=e45]

@@ -1,0 +1,35 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e115] [cursor=pointer]:
+    - img [ref=e116]
+  - alert [ref=e119]
+  - generic [ref=e120]:
+    - banner [ref=e121]:
+      - link "LaunchPad" [ref=e122] [cursor=pointer]:
+        - /url: /
+        - img [ref=e124]
+        - generic [ref=e129]: LaunchPad
+      - link "Back to site" [ref=e130] [cursor=pointer]:
+        - /url: /
+        - img [ref=e131]
+        - text: Back to site
+    - main [ref=e133]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - paragraph [ref=e137]: Welcome back
+          - heading "Sign in to LaunchPad" [level=3] [ref=e138]
+          - paragraph [ref=e139]: Pick up where you left off across your projects and notes.
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - text: Email
+              - textbox "Email" [ref=e143]:
+                - /placeholder: you@startup.com
+            - generic [ref=e144]:
+              - text: Password
+              - textbox "Password" [ref=e145]:
+                - /placeholder: ••••••••
+            - button "Sign in" [ref=e146]
+          - paragraph [ref=e147]:
+            - text: New here?
+            - link "Create an account" [ref=e148] [cursor=pointer]:
+              - /url: /register
